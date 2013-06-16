@@ -1,5 +1,6 @@
 # ColorConverter
 [![Gem Version](https://badge.fury.io/rb/color-converter.png)](http://badge.fury.io/rb/color-converter)
+[![Build Status](https://travis-ci.org/dkan/color-converter.png?branch=master)](https://travis-ci.org/dkan/color-converter)
 [![Dependency Status](https://gemnasium.com/dkan/color-converter.png)](https://gemnasium.com/dkan/color-converter)
 [![Coverage Status](https://coveralls.io/repos/dkan/color-converter/badge.png)](https://coveralls.io/r/dkan/color-converter)
 
