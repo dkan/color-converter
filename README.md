@@ -12,24 +12,20 @@ And then execute:
 
     $ bundle install
 
-## Usage
+## Usage:
 
-Convert to hexcolor example:
-
+    require 'color_converter'
+    
     # Returns a hexcolor code string
     # e.g. "#FFFFFF"
     ColorConverter.hex(255, 255, 255)
     ColorConverter.hex(0, 0, 0, 0)
-
-Convert to RGB example:
-
+    
     # Returns an array of color values
     # e.g. [r, g, b]
     ColorConverter.rgb('#FFFFFF')
     ColorConverter.rgb(0, 0, 0, 0)
-
-Convert to CMYK example:
-
+    
     # Returns an array of color values
     # e.g. [c, m, y, k]
     ColorConverter.cmyk('#000000')
