@@ -1,4 +1,7 @@
 # ColorConverter
+[![Gem Version](https://badge.fury.io/rb/color-converter.png)](http://badge.fury.io/rb/color-converter)
+[![Dependency Status](https://gemnasium.com/dkan/color-converter.png)](https://gemnasium.com/dkan/color-converter)
+[![Coverage Status](https://coveralls.io/repos/dkan/color-converter/badge.png)](https://coveralls.io/r/dkan/color-converter)
 
 ColorConverter is a simple way to convert between hexcolor, RGB, and CMYK values.
 
