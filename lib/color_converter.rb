@@ -1,6 +1,7 @@
 require "color_converter/version"
 
 module ColorConverter
+  HEX = "0123456789ABCDEF".freeze
 
   # Takes RGB or CMYK values as parameters and returns hexcolor code in
   # a string. Raises errors for incorrect inputs.
@@ -16,13 +17,13 @@ module ColorConverter
 
     return values[0] if values.count == 1
 
-    # Raise error if values aren't Fixnums.
-    values.each { |v| raise "Expecting Fixnum." unless v.class == Fixnum }
+    # Raise error if values aren't Integers.
+    ensure_all_integers! values
 
     hex_array = values
-    hex_array = rgb(values[0], values[1], values[2], values[3]) if values.count == 4
+    hex_array = rgb(*values) if values.count == 4
     "#" + hex_array.map do |v|
-      "0123456789ABCDEF"[(v-v%16)/16] + "0123456789ABCDEF"[v%16]
+      HEX[(v-v%16)/16] + HEX[v%16]
     end.join
   end
 
@@ -41,11 +42,11 @@ module ColorConverter
     return values if values.count == 3
 
     if values.count == 1
-      hex_to_rgb(values[0])
+      hex_to_rgb(*values)
     elsif values.count == 4
-      # Raise error if values aren't Fixnums.
-      values.each { |v| raise "Expecting Fixnum." unless v.class == Fixnum }
-      cmyk_to_rgb(values[0], values[1], values[2], values[3])
+      # Raise error if values aren't Integers.
+      ensure_all_integers! values
+      cmyk_to_rgb(*values)
     end
   end
 
@@ -65,12 +66,11 @@ module ColorConverter
 
     # Set cmky_array to array of RGB values.
     cmyk_array = values
-    cmyk_array = rgb(values[0]) if values.count == 1
+    cmyk_array = rgb(*values) if values.count == 1
 
-    # Raise error if values aren't Fixnums
-    cmyk_array.each { |v| raise "Expecting Fixnum." unless v.class == Fixnum }
-
-    rgb_to_cmyk(cmyk_array[0], cmyk_array[1], cmyk_array[2])
+    # Raise error if values aren't Integers
+    ensure_all_integers! cmyk_array
+    rgb_to_cmyk(*cmyk_array)
   end
 
   # Returns RGB values in array from hexcolor code.
@@ -122,5 +122,10 @@ module ColorConverter
   # it is the right count, false if it isn't.
   def self.correct_values? (values)
     [1, 3, 4].include? values.count
+  end
+
+  # Raise error if values are not Integers.
+  def self.ensure_all_integers! (values)
+    raise "Expecting Integers." unless values.all?(&:integer?)
   end
 end
